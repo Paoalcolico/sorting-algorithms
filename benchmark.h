@@ -3,6 +3,8 @@
 #include <chrono>
 #include <iostream>
 
+#include "show_vector.h"
+
 template <typename Func>
 void benchmark(const std::string& name, Func func, const std::vector<int>& data) {
     auto start = std::chrono::high_resolution_clock::now();
