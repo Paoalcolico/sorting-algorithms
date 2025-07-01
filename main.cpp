@@ -14,10 +14,13 @@
 #include "quick_sort.h"
 #include "selection_sort.h"
 #include "shell_sort.h"
+#include "smooth_sort.h"
 #include "strand_sort.h"
 #include "tim_sort.h"
 
 int main() {
+    std::vector<int> base100 = generate_random_vector(100);
+
     const size_t SIZE10 = 10000;
     std::vector<int> base10k = generate_random_vector(SIZE10);
 
@@ -39,8 +42,9 @@ int main() {
     benchmark("Insertion Sort 10k elements", insertion_sorting<int>, base10k);
     benchmark("Selection Sort 10k elements", selection_sorting<int>, base10k);
     benchmark("Strand Sort 20k elements", strand_sorting<int>, base20k);
-    benchmark("Patience Sort 200k elements", patience_sorting<int>, base200k);
+    benchmark("Patience Sort 20k elements", patience_sorting<int>, base20k);
     benchmark("Shell Sort 500k elements", shell_sorting<int>, base500k);
+    benchmark("Smooth Sort 500k elements", smooth_sorting<int>, base500k);
     benchmark("Quick Sort 500k elements", quick_sorting<int>, base500k);
     benchmark("Combo Sort 500k elements", combo_sorting<int>, base500k);
     benchmark("Tim Sort 500k elements", tim_sorting<int>, base500k);
