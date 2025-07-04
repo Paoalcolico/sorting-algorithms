@@ -1,6 +1,7 @@
 #include <vector>
 
 #include "benchmark.h"
+#include "block_sort.h"
 #include "bubble_sort.h"
 #include "cocktail_sort.h"
 #include "combo_sort.h"
@@ -45,6 +46,7 @@ int main() {
     benchmark("Patience Sort 20k elements", patience_sorting<int>, base20k);
     benchmark("Shell Sort 500k elements", shell_sorting<int>, base500k);
     benchmark("Smooth Sort 500k elements", smooth_sorting<int>, base500k);
+    benchmark("Block Sort 500k elements", wiki_sorting<int>, base500k);
     benchmark("Quick Sort 500k elements", quick_sorting<int>, base500k);
     benchmark("Combo Sort 500k elements", combo_sorting<int>, base500k);
     benchmark("Tim Sort 500k elements", tim_sorting<int>, base500k);
