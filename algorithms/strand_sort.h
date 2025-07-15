@@ -51,7 +51,7 @@ std::list<T> merge(const std::list<T>& a, const std::list<T>& b) {
 }
 
 template <typename T>
-std::vector<T> strand_sorting(const std::vector<T> input_array) {
+void strand_sort(std::vector<T>& input_array) {
     std::list<T> input(input_array.begin(), input_array.end());
     std::list<T> sorted;
 
@@ -60,5 +60,5 @@ std::vector<T> strand_sorting(const std::vector<T> input_array) {
         sorted = merge(sorted, strand);
     }
 
-    return std::vector<T>(sorted.begin(), sorted.end());
+    input_array = std::vector<T>(sorted.begin(), sorted.end());
 }

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <csignal>
 #include <cstring>
-#include <vector>
+#include <functional>
 
 template <typename T>
 void swap_n(T* a, T* b, int n) {
@@ -592,10 +592,4 @@ void common_sort(T* arr, int Len, T* extbuf, int LExtBuf) {
     }
     insertion_sort(arr, ptr);
     merge_without_buffer(arr, ptr, Len - ptr);
-}
-
-template <typename T>
-std::vector<T> grail_sorting(std::vector<T> array) {
-    common_sort(array.data(), array.size(), static_cast<T*>(nullptr), 0);
-    return array;
 }

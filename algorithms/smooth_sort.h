@@ -16,7 +16,7 @@ inline void DOWN(int& a, int& b) {
 }
 
 template <typename T>
-std::vector<T> smooth_sorting(std::vector<T> A) {
+void smooth_sort(std::vector<T>& A) {
     const int N = A.size();
     int q = 1, r = 0, p = 1, b = 1, c = 1;
 
@@ -150,6 +150,4 @@ std::vector<T> smooth_sorting(std::vector<T> A) {
             p = (p << 1) + 1;
         }
     }
-
-    return A;
 }

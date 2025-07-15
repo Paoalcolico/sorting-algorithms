@@ -438,9 +438,3 @@ inline void pdqsort(Iter begin, Iter end, Compare comp) {
         log2(end - begin)
     );
 }
-
-template <typename T>
-std::vector<T> pdq_sorting(std::vector<T> vec) {
-    pdqsort(vec.begin(), vec.end(), std::less<T>());
-    return vec;
-}

@@ -14,7 +14,6 @@
 #include <ctime>
 #include <iterator>
 #include <limits>
-#include <vector>
 
 // record the number of comparisons and assignments
 // note that this reduces WikiSort's performance when enabled
@@ -1169,9 +1168,3 @@ void Sort(RandomAccessIterator first, RandomAccessIterator last, Comparison comp
     }
 }
 }  // namespace Wiki
-
-template <typename T>
-std::vector<T> wiki_sorting(std::vector<T> array) {
-    Wiki::Sort(array.begin(), array.end(), std::less<T>());
-    return array;
-}

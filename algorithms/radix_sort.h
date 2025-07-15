@@ -29,8 +29,7 @@ void count_sort(std::vector<T>& array, T exp) {
 }
 
 template <typename T>
-std::vector<T> radix_sorting(std::vector<T> array) {
+void radix_sort(std::vector<T>& array) {
     const T max_val = get_max(array);
     for (T exp = 1; max_val / exp > 0; exp *= 10) count_sort(array, exp);
-    return array;
 }

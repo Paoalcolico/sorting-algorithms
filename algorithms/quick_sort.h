@@ -27,9 +27,3 @@ void quick_sort(std::vector<T>& array, int low, int high) {
         quick_sort(array, pi + 1, high);
     }
 }
-
-template <typename T>
-std::vector<T> quick_sorting(std::vector<T> array) {
-    quick_sort(array, 0, array.size() - 1);
-    return array;
-}

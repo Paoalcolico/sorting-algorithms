@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> bubble_sorting(std::vector<T> array) {
+void bubble_sort(std::vector<T>& array) {
     for (size_t n = array.size(); n > 1; --n) {
         bool swapped = false;
         for (size_t i = 0; i < n - 1; ++i) {
@@ -14,6 +14,4 @@ std::vector<T> bubble_sorting(std::vector<T> array) {
         }
         if (!swapped) break;
     }
-
-    return array;
 }

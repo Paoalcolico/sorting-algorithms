@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> selection_sorting(std::vector<T> array) {
+void selection_sort(std::vector<T>& array) {
     size_t size = array.size();
     for (size_t i = 0; i < size - 1; i++) {
         size_t min = i;
@@ -16,5 +16,4 @@ std::vector<T> selection_sorting(std::vector<T> array) {
             std::swap(array[min], array[i]);
         }
     }
-    return array;
 }

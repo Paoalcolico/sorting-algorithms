@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> insertion_sorting(std::vector<T> array) {
+void insertion_sort(std::vector<T>& array) {
     size_t i = 1;
     while (i < array.size()) {
         size_t j = i;
@@ -13,5 +13,4 @@ std::vector<T> insertion_sorting(std::vector<T> array) {
         }
         i++;
     }
-    return array;
 }

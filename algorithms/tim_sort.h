@@ -38,13 +38,11 @@ void merge(std::vector<T>& array, size_t l, size_t m, size_t r) {
 }
 
 template <typename T>
-std::vector<T> tim_sorting(std::vector<T> array) {
+void tim_sort(std::vector<T>& array) {
     size_t n = array.size();
-
     for (size_t i = 0; i < n; i += RUN) {
         insertion_sort(array, i, std::min(i + RUN - 1, n - 1));
     }
-
     for (size_t size = RUN; size < n; size *= 2) {
         for (size_t left = 0; left < n; left += 2 * size) {
             size_t mid = left + size - 1;
@@ -53,5 +51,4 @@ std::vector<T> tim_sorting(std::vector<T> array) {
             merge(array, left, mid, right);
         }
     }
-    return array;
 }

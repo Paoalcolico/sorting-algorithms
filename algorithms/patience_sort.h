@@ -24,7 +24,7 @@ std::vector<T> merge_piles(std::vector<std::vector<T>>& v) {
 }
 
 template <typename T>
-std::vector<T> patience_sorting(std::vector<T> arr) {
+void patience_sort(std::vector<T>& arr) {
     std::vector<std::vector<T>> piles;
     for (const T& val : arr) {
         bool placed = false;
@@ -40,6 +40,5 @@ std::vector<T> patience_sorting(std::vector<T> arr) {
         }
     }
 
-    std::vector<T> ans = merge_piles(piles);
-    return ans;
+    arr = merge_piles(piles);
 }

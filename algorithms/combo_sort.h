@@ -4,7 +4,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> combo_sorting(std::vector<T> array) {
+void combo_sort(std::vector<T>& array) {
     size_t gap = array.size();
     double shrink = 1.3;
     bool swapped = true;
@@ -20,5 +20,4 @@ std::vector<T> combo_sorting(std::vector<T> array) {
             }
         }
     }
-    return array;
 }

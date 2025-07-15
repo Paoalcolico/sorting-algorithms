@@ -3,7 +3,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> odd_even_sorting(std::vector<T> array) {
+void odd_even_sort(std::vector<T>& array) {
     bool is_sorted = false;
     while (!is_sorted) {
         is_sorted = true;
@@ -22,5 +22,4 @@ std::vector<T> odd_even_sorting(std::vector<T> array) {
             }
         }
     }
-    return array;
 }

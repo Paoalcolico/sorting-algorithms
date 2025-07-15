@@ -4,7 +4,7 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> cocktail_sorting(std::vector<T> array) {
+void cocktail_sort(std::vector<T>& array) {
     size_t start = 0;
     size_t end = array.size() - 1;
     bool swapped;
@@ -27,5 +27,4 @@ std::vector<T> cocktail_sorting(std::vector<T> array) {
         }
         ++start;
     } while (swapped);
-    return array;
 }

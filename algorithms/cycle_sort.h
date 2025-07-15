@@ -3,9 +3,8 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> cycle_sorting(std::vector<T> array) {
+void cycle_sort(std::vector<T>& array) {
     const size_t n = array.size();
-    if (n < 2) return array;
 
     for (size_t cycle_start = 0; cycle_start < n - 1; ++cycle_start) {
         T item = array[cycle_start];
@@ -29,5 +28,4 @@ std::vector<T> cycle_sorting(std::vector<T> array) {
             std::swap(item, array[pos]);
         }
     }
-    return array;
 }

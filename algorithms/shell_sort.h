@@ -4,9 +4,8 @@
 #include <vector>
 
 template <typename T>
-std::vector<T> shell_sorting(std::vector<T> array) {
+void shell_sort(std::vector<T>& array) {
     std::vector<int> gaps = {1750, 701, 301, 132, 57, 23, 10, 4, 1};
-
     for (int gap : gaps) {
         for (size_t i = gap; i < array.size(); ++i) {
             T temp = array[i];
@@ -18,6 +17,4 @@ std::vector<T> shell_sorting(std::vector<T> array) {
             array[j] = temp;
         }
     }
-
-    return array;
 }
