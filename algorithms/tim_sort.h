@@ -20,20 +20,21 @@ void insertion_sort(std::vector<T>& array, size_t left, size_t right) {
 
 template <typename T>
 void merge(std::vector<T>& array, size_t l, size_t m, size_t r) {
-    size_t len1 = m - l + 1;
-    size_t len2 = r - m;
-
-    std::vector<T> left(array.begin() + l, array.begin() + m + 1);
-    std::vector<T> right(array.begin() + m + 1, array.begin() + r + 1);
+    auto left = std::vector<T>(
+        std::make_move_iterator(array.begin() + l),
+        std::make_move_iterator(array.begin() + m + 1)
+    );
+    auto right = std::vector<T>(
+        std::make_move_iterator(array.begin() + m + 1),
+        std::make_move_iterator(array.begin() + r + 1)
+    );
 
     size_t i = 0, j = 0, k = l;
-
-    while (i < len1 && j < len2) {
+    while (i < left.size() && j < right.size()) {
         array[k++] = (left[i] <= right[j]) ? std::move(left[i++]) : std::move(right[j++]);
     }
-
-    while (i < len1) array[k++] = std::move(left[i++]);
-    while (j < len2) array[k++] = std::move(right[j++]);
+    while (i < left.size()) array[k++] = std::move(left[i++]);
+    while (j < right.size()) array[k++] = std::move(right[j++]);
 }
 
 template <typename T>

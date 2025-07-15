@@ -12,7 +12,6 @@
 #include <cassert>
 #include <cmath>
 #include <ctime>
-#include <iostream>
 #include <iterator>
 #include <limits>
 #include <vector>
@@ -35,7 +34,7 @@
 // whether to give WikiSort a full-size cache, to see how it performs when given more memory
 #define DYNAMIC_CACHE false
 
-double Seconds() {
+inline double Seconds() {
     return std::clock() * 1.0 / CLOCKS_PER_SEC;
 }
 
@@ -1176,110 +1175,3 @@ std::vector<T> wiki_sorting(std::vector<T> array) {
     Wiki::Sort(array.begin(), array.end(), std::less<T>());
     return array;
 }
-
-// class to test stable sorting (index will contain its original index in the array, to make sure it
-// doesn't switch places with other items)
-class Test {
-   public:
-    std::size_t value;
-#if VERIFY
-    std::size_t index;
-#endif
-
-#if PROFILE
-    Test& operator=(const Test& rhs) {
-        assignments++;
-        value = rhs.value;
-#if VERIFY
-        index = rhs.index;
-#endif
-        return *this;
-    }
-#endif
-};
-
-#if SLOW_COMPARISONS
-#define NOOP_SIZE 50
-std::size_t noop1[NOOP_SIZE], noop2[NOOP_SIZE];
-#endif
-
-bool TestCompare(Test item1, Test item2) {
-#if PROFILE
-    comparisons++;
-#endif
-
-#if SLOW_COMPARISONS
-    // test slow comparisons by adding some fake overhead
-    // (in real-world use this might be string comparisons, etc.)
-    for (std::size_t index = 0; index < NOOP_SIZE; index++) noop1[index] = noop2[index];
-#endif
-
-    return item1.value < item2.value;
-}
-
-using namespace std;
-
-// make sure the items within the given range are in a stable order
-// if you want to test the correctness of any changes you make to the main WikiSort function,
-// move this function to the top of the file and call it from within WikiSort after each step
-#if VERIFY
-template <typename Iterator, typename Comparison>
-void Verify(Iterator start, Iterator end, const Comparison compare, const string msg) {
-    for (Iterator it = start + 1; it < end; ++it) {
-        // if it's in ascending order then we're good
-        // if both values are equal, we need to make sure the index values are ascending
-        if (!(compare(*(it - 1), *it) || (!compare(*it, *(it - 1)) && it->index > (it - 1)->index)
-            )) {
-            // for (Iterator it2 = start; it2 < end; ++it2)
-            //     cout << it2->value << " (" << it2->index << ") ";
-
-            cout << endl << "failed with message: " << msg << endl;
-            assert(false);
-        }
-    }
-}
-#endif
-
-namespace Testing {
-size_t Random(size_t index, size_t total) {
-    return rand();
-}
-
-size_t RandomFew(size_t index, size_t total) {
-    return rand() * (100.0 / RAND_MAX);
-}
-
-size_t MostlyDescending(size_t index, size_t total) {
-    return total - index + rand() * 1.0 / RAND_MAX * 5 - 2.5;
-}
-
-size_t MostlyAscending(size_t index, size_t total) {
-    return index + rand() * 1.0 / RAND_MAX * 5 - 2.5;
-}
-
-size_t Ascending(size_t index, size_t total) {
-    return index;
-}
-
-size_t Descending(size_t index, size_t total) {
-    return total - index;
-}
-
-size_t Equal(size_t index, size_t total) {
-    return 1000;
-}
-
-size_t Jittered(size_t index, size_t total) {
-    return (rand() * 1.0 / RAND_MAX <= 0.9) ? index : (index - 2);
-}
-
-size_t MostlyEqual(size_t index, size_t total) {
-    return 1000 + rand() * 1.0 / RAND_MAX * 4;
-}
-
-// the last 1/5 of the data is random
-size_t Append(size_t index, size_t total) {
-    if (index > total - total / 5) return rand() * 1.0 / RAND_MAX * total;
-    return index;
-}
-}  // namespace Testing
